@@ -68,10 +68,17 @@ def create_plots(df):
     fig2.update_xaxes(title_text='time(local)')
     fig3.update_xaxes(title_text='time(local)')
     fig4.update_xaxes(title_text='time(local)')
+
     fig1.update_yaxes(title_text="$W/m^2$")
     fig2.update_yaxes(title_text="$W/m^2$")
     fig3.update_yaxes(title_text="Air Temp")
     fig4.update_yaxes(title_text="RH")
+
+    fig1.update_traces(marker=dict(size=5))
+    fig2.update_traces(marker=dict(size=5))
+    fig3.update_traces(marker=dict(size=5))
+    fig4.update_traces(marker=dict(size=5))
+
     fig1.update_layout(title='GHI', yaxis_range=[0, 1200])
     fig2.update_layout(title='DNI', yaxis_range=[0, 1200])
 
