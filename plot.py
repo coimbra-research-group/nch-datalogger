@@ -69,8 +69,8 @@ def create_plots(df):
     fig3.update_xaxes(title_text='time(local)')
     fig4.update_xaxes(title_text='time(local)', linecolor='black', mirror=True, ticks='outside', showline=True)
 
-    fig1.update_yaxes(title_text="$W/m^2$")
-    fig2.update_yaxes(title_text="$W/m^2$", gridcolor='lightgrey')
+    fig1.update_yaxes(title_text="W/m<sup>2")
+    fig2.update_yaxes(title_text="W/m<sup>2", gridcolor='lightgrey')
     fig3.update_yaxes(title_text="Air Temp")
     fig4.update_yaxes(title_text="RH", linecolor='black', mirror=True, ticks='outside', showline=True)
 
