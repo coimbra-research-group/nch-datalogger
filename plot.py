@@ -65,14 +65,14 @@ def create_plots(df):
         )
 
     fig1.update_xaxes(title_text='time(local)')
-    fig2.update_xaxes(title_text='time(local)', gridcolor='lightgrey')
+    fig2.update_xaxes(title_text='time(local)')
     fig3.update_xaxes(title_text='time(local)')
-    fig4.update_xaxes(title_text='time(local)', linecolor='black', mirror=True, ticks='outside', showline=True)
+    fig4.update_xaxes(title_text='time(local)')
 
     fig1.update_yaxes(title_text="W/m<sup>2")
-    fig2.update_yaxes(title_text="W/m<sup>2", gridcolor='lightgrey')
+    fig2.update_yaxes(title_text="W/m<sup>2")
     fig3.update_yaxes(title_text="Air Temp")
-    fig4.update_yaxes(title_text="RH", linecolor='black', mirror=True, ticks='outside', showline=True)
+    fig4.update_yaxes(title_text="RH")
 
     fig1.update_traces(marker=dict(size=5))
     fig2.update_traces(marker=dict(size=5))
@@ -80,9 +80,9 @@ def create_plots(df):
     fig4.update_traces(marker=dict(size=5))
 
     fig1.update_layout(title='GHI', yaxis_range=[0, 1200])
-    fig2.update_layout(title='DNI', yaxis_range=[0, 1200], plot_bgcolor='white')
+    fig2.update_layout(title='DNI', yaxis_range=[0, 1200])
     fig3.update_layout(title='Air Temperature')
-    fig4.update_layout(title='RH', plot_bgcolor='white')
+    fig4.update_layout(title='RH')
 
     filename1 = os.path.join("html_plots", "ghi_plot.html")
     filename2 = os.path.join("html_plots", "dni_plot.html")
