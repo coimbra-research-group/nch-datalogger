@@ -79,10 +79,44 @@ def create_plots(df):
     fig3.update_traces(marker=dict(size=5))
     fig4.update_traces(marker=dict(size=5))
 
-    fig1.update_layout(title='GHI', yaxis_range=[0, 1200])
-    fig2.update_layout(title='DNI', yaxis_range=[0, 1200])
-    fig3.update_layout(title='Air Temperature')
-    fig4.update_layout(title='RH')
+    fig1.update_layout(
+        title='GHI',
+        yaxis_range=[0, 1200],
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0)
+    )
+    fig2.update_layout(
+        title='DNI',
+        yaxis_range=[0, 1200],
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0)
+    )
+    fig3.update_layout(
+        title='Air Temperature',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0)
+    )
+    fig4.update_layout(
+        title='RH',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0)
+    )
 
     filename1 = os.path.join("html_plots", "ghi_plot.html")
     filename2 = os.path.join("html_plots", "dni_plot.html")
