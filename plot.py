@@ -23,21 +23,24 @@ def create_plots(df):
         x=df['TIMESTAMP'],
         y=df['RSR_GHI_Avg'],
         mode='markers',
-        name='RSR')
+        name='RSR',
+        marker=dict(color='#2E86AB'))
     )
 
     fig1.add_trace(go.Scatter(
         x=df['TIMESTAMP'],
         y=df['PSP_GHI_Avg'],
         mode='markers',
-        name='PSP')
+        name='PSP',
+        marker=dict(color='#659157'))
     )
 
     fig1.add_trace(go.Scatter(
         x=df['TIMESTAMP'],
         y=df['SPN_GHI_Avg'],
         mode='markers',
-        name='SPN')
+        name='SPN',
+        marker=dict(color='#CB3743'))
     )
 
     fig2.add_trace(go.Scatter(
@@ -45,7 +48,8 @@ def create_plots(df):
         y=df['RSR_DNI_Avg'],
         mode='markers',
         showlegend=True,
-        name='RSR')
+        name='RSR',
+        marker=dict(size=5, color='#2E86AB'))
         )
     
     fig3.add_trace(go.Scatter(
@@ -53,7 +57,8 @@ def create_plots(df):
         y=df['AirTemp_Avg'],
         mode='markers',
         showlegend=True,
-        name='Air Temp')
+        name='Air Temp',
+        marker=dict(size=5, color='#2E86AB'))
         )
 
     fig4.add_trace(go.Scatter(
@@ -61,7 +66,8 @@ def create_plots(df):
         y=df['RH_Avg'],
         mode='markers',
         showlegend=True,
-        name='RH')
+        name='RH',
+        marker=dict(size=5, color='#2E86AB'))
         )
 
     fig1.update_xaxes(title_text='time(local)')
@@ -75,9 +81,6 @@ def create_plots(df):
     fig4.update_yaxes(title_text="RH")
 
     fig1.update_traces(marker=dict(size=5))
-    fig2.update_traces(marker=dict(size=5))
-    fig3.update_traces(marker=dict(size=5))
-    fig4.update_traces(marker=dict(size=5))
 
     fig1.update_layout(
         title='GHI',
