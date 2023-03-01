@@ -13,39 +13,52 @@ def process_csv(file):
     df = df.sort_values(by='TIMESTAMP')
     return df
 
-def create_plots(df):
+def create_plots(df, duration):
+    if duration == 'last_24_hours':
+        last_ts = df['TIMESTAMP'].iloc[-1]
+        start_ts = last_ts - pd.DateOffset(hours=24)
+        df_plot = df[(df['TIMESTAMP'] >= start_ts) & (df['TIMESTAMP'] <= last_ts)]
+        extension = '_24hrs'
+    elif duration == 'last_7_days':
+        date_lst = df['date'].unique()[:-7]
+        df_plot = df[df['date'].isin(date_lst)]
+        extension = '_7days'
+    else:
+        df_plot = df.copy()
+        extension = ''
+
     fig1 = go.Figure()
     fig2 = go.Figure()
     fig3 = go.Figure()
     fig4 = go.Figure()
 
     fig1.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['RSR_GHI_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['RSR_GHI_Avg'],
         mode='markers',
         name='RSR',
         marker=dict(color='#2E86AB'))
     )
 
     fig1.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['PSP_GHI_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['PSP_GHI_Avg'],
         mode='markers',
         name='PSP',
         marker=dict(color='#659157'))
     )
 
     fig1.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['SPN_GHI_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['SPN_GHI_Avg'],
         mode='markers',
         name='SPN',
         marker=dict(color='#CB3743'))
     )
 
     fig2.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['RSR_DNI_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['RSR_DNI_Avg'],
         mode='markers',
         showlegend=True,
         name='RSR',
@@ -53,8 +66,8 @@ def create_plots(df):
         )
     
     fig3.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['AirTemp_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['AirTemp_Avg'],
         mode='markers',
         showlegend=True,
         name='Air Temp',
@@ -62,8 +75,8 @@ def create_plots(df):
         )
 
     fig4.add_trace(go.Scatter(
-        x=df['TIMESTAMP'],
-        y=df['RH_Avg'],
+        x=df_plot['TIMESTAMP'],
+        y=df_plot['RH_Avg'],
         mode='markers',
         showlegend=True,
         name='RH',
@@ -121,10 +134,10 @@ def create_plots(df):
             x=0)
     )
 
-    filename1 = os.path.join("html_plots", "ghi_plot.html")
-    filename2 = os.path.join("html_plots", "dni_plot.html")
-    filename3 = os.path.join("html_plots", "airtemp_plot.html")
-    filename4 = os.path.join("html_plots", "rh_plot.html")
+    filename1 = os.path.join("html_plots", f"ghi_plot{extension}.html")
+    filename2 = os.path.join("html_plots", f"dni_plot{extension}.html")
+    filename3 = os.path.join("html_plots", f"airtemp_plot{extension}.html")
+    filename4 = os.path.join("html_plots", f"rh_plot{extension}.html")
     fig1.write_html(filename1)
     fig2.write_html(filename2)
     fig3.write_html(filename3)
@@ -134,4 +147,6 @@ def create_plots(df):
 if __name__ == "__main__":
     data = os.path.join("data", "NCH_01.csv")
     df = process_csv(data)
-    create_plots(df)
+    create_plots(df, 'last_24_hours')
+    create_plots(df, 'last_7_days')
+    create_plots(df, 'all')

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
     <title>Landing page</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+      .selected {
+          display: none;
+      }
+    </style>
 </head>
 
 <!-- <nav>
@@ -21,20 +27,61 @@
 </body>
 
 <body>
-  <div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
-    <div class="dropdown-content">
-      <a href="#">Last 24 Hours</a>
-      <a href="#">Last Week</a>
-      <a href="#">All Days</a>
+  <div>
+    <label for="f-option" class="l-radio">
+      <input type="radio" id="last_24_hrs" name="selector" tabindex="1" checked>
+      <span>Last 24 Hours</span>
+    </label>
+    <label for="s-option" class="l-radio">
+      <input type="radio" id="last_7_days" name="selector" tabindex="2">
+      <span>Last 7 Days</span>
+    </label>
+      <label for="t-option" class="l-radio">
+      <input type="radio" id="all_data" name="selector" tabindex="3">
+      <span>All Data</span>
+    </label>
   </div>
-</div>
-  <center>
+  <!-- <center>
       <iframe  src="html_plots/ghi_plot.html" height="450" width="700" frameborder="0" title="ghi plot"></iframe>
       <iframe  src="html_plots/dni_plot.html" height="450" width="700" frameborder="0" title="dni plot"></iframe>
       <iframe  src="html_plots/airtemp_plot.html" height="450" width="700" frameborder="0" title="airtemp plot"></iframe>
       <iframe  src="html_plots/rh_plot.html" height="450" width="700" frameborder="0" title="rh plot"></iframe>
-  </center>
+  </center> -->
+  <div class="last_24_hrs selected">
+    <center>
+      <iframe  src="html_plots/ghi_plot_24hrs.html" height="400" width="650" frameborder="0" title="ghi plot"></iframe>
+      <iframe  src="html_plots/dni_plot_24hrs.html" height="400" width="650" frameborder="0" title="dni plot"></iframe>
+      <iframe  src="html_plots/airtemp_plot_24hrs.html" height="400" width="650" frameborder="0" title="airtemp plot"></iframe>
+      <iframe  src="html_plots/rh_plot_24hrs.html" height="400" width="650" frameborder="0" title="rh plot"></iframe>
+    </center>
+  </div>
+  <div class="last_7_days selected">
+    <center>
+      <iframe  src="html_plots/ghi_plot_7days.html" height="400" width="650" frameborder="0" title="ghi plot"></iframe>
+      <iframe  src="html_plots/dni_plot_7days.html" height="400" width="650" frameborder="0" title="dni plot"></iframe>
+      <iframe  src="html_plots/airtemp_plot_7days.html" height="400" width="650" frameborder="0" title="airtemp plot"></iframe>
+      <iframe  src="html_plots/rh_plot_7days.html" height="400" width="650" frameborder="0" title="rh plot"></iframe>
+    </center>
+  </div>
+  <div class="all_data selected">
+    <center>
+      <iframe  src="html_plots/ghi_plot.html" height="400" width="650" frameborder="0" title="ghi plot"></iframe>
+      <iframe  src="html_plots/dni_plot.html" height="400" width="650" frameborder="0" title="dni plot"></iframe>
+      <iframe  src="html_plots/airtemp_plot.html" height="400" width="650" frameborder="0" title="airtemp plot"></iframe>
+      <iframe  src="html_plots/rh_plot.html" height="400" width="650" frameborder="0" title="rh plot"></iframe>
+    </center>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('input[type="radio"]').click(function() {
+              var inputValue = $(this).attr("id");
+              var targetBox = $("." + inputValue);
+              $(".selected").not(targetBox).hide();
+              $(targetBox).show();
+          });
+      });
+  </script>
+  
 </body>
 
 </html>
