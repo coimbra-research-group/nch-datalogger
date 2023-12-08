@@ -1,7 +1,7 @@
 # =============================================================================
 # 
-# Translate HTML output from datalogger into CSV for use in plot.py using BS4.
-# Code prepared by Benjamin Tarver. Last updated Nov 20, 2023.
+# Translate HTML output from datalogger and append it to MySQL data table.
+# Code prepared by Benjamin Tarver. Last updated Dec 8, 2023.
 # 
 # =============================================================================
 
